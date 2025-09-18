@@ -12,25 +12,15 @@ services:
     ports:
       - "5432:5432"
 
-  backend:
+  app:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./backend/Dockerfile
     command: npm run serve
     ports:
       - "3000:3000"
     depends_on:
       - db
-    restart: always
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: dockerfile
-    ports:
-      - "3001:3000"
-    depends_on:
-      - backend
     restart: always
 
 volumes:

@@ -30,8 +30,7 @@ A comprehensive health assistant application with AI-powered chat, hospital find
    ```
 
 3. **Access the application**
-   - Frontend: http://localhost:3001
-   - Backend API: http://localhost:3000
+   - Application: http://localhost:3000
    - Database: localhost:5432
 
 ### Manual Setup
@@ -43,14 +42,13 @@ If you prefer to run services individually:
 docker-compose up --build
 
 # Or start specific services
-docker-compose up db backend frontend
+docker-compose up db app
 ```
 
 ## 🏗️ Architecture
 
 ### Services
-- **Frontend**: React + TypeScript + Vite (Port 3001)
-- **Backend**: Node.js + Express + TypeScript (Port 3000)
+- **Application**: React + Node.js + Express + TypeScript (Port 3000)
 - **Database**: PostgreSQL (Port 5432)
 - **AI Service**: Python Flask (Integrated with backend)
 
@@ -116,6 +114,7 @@ The database is automatically initialized with the schema defined in `init.sql`.
 
 ### Health
 - `GET /api/health/check` - Health check endpoint
+- `GET /api` - API status endpoint
 
 ## 🐳 Docker Commands
 

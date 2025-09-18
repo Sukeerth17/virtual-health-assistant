@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const VideoCall = () => {
     const [isCallActive, setIsCallActive] = useState(false);
@@ -6,7 +6,7 @@ const VideoCall = () => {
     const [isVideoOn, setIsVideoOn] = useState(true);
     const [callDuration, setCallDuration] = useState(0);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const intervalRef = useRef<number | null>(null);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         if (isCallActive) {
