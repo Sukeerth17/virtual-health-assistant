@@ -1,29 +1,26 @@
-# Use a Node.js base image
+# Base image for the backend
 FROM node:18-alpine
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Install dependencies for the backend
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
+
+# Install Python and its dependencies for the AI model
+RUN apk add --no-cache python3 py3-pip
+COPY ./ai/requirements.txt ./ai/requirements.txt
+RUN pip install --no-cache-dir -r ./ai/requirements.txt
 
 # Copy all source files
 COPY . .
 
-# Build the React app for production
+# Build the TypeScript project
 RUN npm run build
 
-# Use a lightweight Nginx image to serve the built app
-FROM nginx:alpine
-
-# Copy the built app from the previous stage to the Nginx public directory
-COPY --from=0 /app/dist /usr/share/nginx/html
-
-# Expose port 3000
+# Expose the port the app runs on
 EXPOSE 3000
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Command to run the application
+CMD ["npm", "run", "serve"]
