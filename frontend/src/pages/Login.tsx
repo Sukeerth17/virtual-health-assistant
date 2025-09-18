@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }: { onLogin: () => void }) => {
+const Login = () => {
+    const navigate = useNavigate();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [otp, setOtp] = useState('');
     const [otpSent, setOtpSent] = useState(false);
@@ -38,7 +40,7 @@ const Login = ({ onLogin }: { onLogin: () => void }) => {
             });
             const data = await response.json();
             if (response.ok) {
-                onLogin();
+                navigate('/');
             } else {
                 setMessage(data.message);
             }
