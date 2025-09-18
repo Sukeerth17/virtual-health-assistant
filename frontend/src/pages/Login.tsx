@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Login = () => {
 
     const handleRequestOtp = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/auth/request-otp', {
+            const response = await fetch(`${config.apiUrl}${config.endpoints.auth.requestOtp}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ const Login = () => {
 
     const handleVerifyOtp = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/auth/verify-otp', {
+            const response = await fetch(`${config.apiUrl}${config.endpoints.auth.verifyOtp}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

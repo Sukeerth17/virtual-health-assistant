@@ -11,7 +11,7 @@ RUN npm install
 # Install Python and its dependencies for the AI model
 RUN apk add --no-cache python3 py3-pip
 COPY ./ai/requirements.txt ./ai/requirements.txt
-RUN pip install --no-cache-dir -r ./ai/requirements.txt
+RUN pip install --no-cache-dir --break-system-packages -r ./ai/requirements.txt
 
 # Copy all source files
 COPY . .
