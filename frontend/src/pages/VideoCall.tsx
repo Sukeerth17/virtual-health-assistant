@@ -7,6 +7,124 @@ const VideoCall = () => {
     const [callDuration, setCallDuration] = useState(0);
     const videoRef = useRef<HTMLVideoElement>(null);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    <style>
+        {
+.video-call-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.video-call-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.pre-call-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.25);
+  max-width: 500px;
+  width: 100%;
+  animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pre-call-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.pre-call-description {
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.feature-icon {
+  font-size: 1.25rem;
+}
+
+.start-call-btn {
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  border: none;
+  border-radius: 16px;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.4);
+}
+
+.start-call-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -4px rgba(16, 185, 129, 0.5);
+}
+
+.video-call-interface {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+}
+
+.video-area {
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.video-stream {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.call-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+        }
+        
+    </style>
 
     useEffect(() => {
         if (isCallActive) {
